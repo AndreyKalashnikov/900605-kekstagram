@@ -62,8 +62,6 @@ var randomUrls = getRandomOrder(TOTAL_SAMPLES);
 
 var photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-console.log(photoTemplate);
-
 var renderPhoto = function (photo) {
   var photoElement = photoTemplate.cloneNode(true);
   photoElement.querySelector('img').src = photo.url;
