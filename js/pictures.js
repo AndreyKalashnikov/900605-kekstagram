@@ -40,6 +40,7 @@ var getRandomFromDiaposon = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// Создает массив с числами от 1 до number в случайном порядке без повторений
 var getRandomOrder = function (number) {
   var numberArray = [];
   for (var i = 0; i < number; i++) {
@@ -54,5 +55,8 @@ var getRandomOrder = function (number) {
   }
   return randomArray;
 };
+
+var randomPicture = getRandomOrder(TOTAL_SAMPLES);
+console.log(randomPicture);
 
 
