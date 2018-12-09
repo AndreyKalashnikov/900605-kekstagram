@@ -107,19 +107,14 @@ for (var k = 0; k < countPreviousComments; k++) {
 }
 
 var commentsFragment = document.createDocumentFragment();
+var commentsTemplate = document.querySelector('#comments').content.querySelector('.social__comment');
 var countComments = getRandomFromDiaposon(1, 6);
+
 for (var j = 0; j < countComments; j++) {
-  var newComment = document.createElement('li');
-  newComment.className = 'social__comment';
-  newComment.innerHTML = '<img class="social__picture" src="img/avatar-' +
-  getRandomFromDiaposon(1, 6) +
-  '.svg"' +
-  'alt="Аватар комментатора фотографии"' +
-  'width="35" height="35">' +
-  '<p class="social__text">' +
-  'текст комментария' +
-  '</p>';
-  commentsFragment.appendChild(newComment);
+  var commentsElement = commentsTemplate.cloneNode(true);
+  commentsElement.querySelector('img').src = 'img/avatar-' + getRandomFromDiaposon(1, 6) + '.svg';
+  commentsElement.querySelector('p').textContent = getByIndex(COMMENTS, getRandomFromDiaposon(0, COMMENTS.length - 1));
+  commentsFragment.appendChild(commentsElement);
 }
 
 bigPictureComments.appendChild(commentsFragment);
