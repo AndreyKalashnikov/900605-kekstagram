@@ -28,7 +28,30 @@ var onUploadOverlayEcsPress = function (evt) {
 uploadFile.addEventListener('change', openUploadOverlay);
 
 imgUploadCancel.addEventListener('click', closeUploadOverlay);
-// imgUploadCancel.addEventListener('keydown', function (evt) {
-//   console.log(evt.keyCode);
+imgUploadCancel.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closeUploadOverlay();
+  }
+});
 
-// });
+var scaleControlValue = imgUploadOverlay.querySelector('.scale__control--value');
+var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
+
+imgUploadOverlay.addEventListener('click', function (evt) {
+  var target = evt.target;
+  if (target.classList.contains('scale__control--smaller')) {
+    numericScaleControlValue = Math.max(0, numericScaleControlValue - 25);
+    scaleControlValue.value = numericScaleControlValue + '%';
+  } else if (target.classList.contains('scale__control--bigger')) {
+    numericScaleControlValue = Math.min(100, numericScaleControlValue + 25);
+    scaleControlValue.value = numericScaleControlValue + '%';
+  }
+
+  var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
+
+  scaleControlValue.addEventListener('input', function () {
+    console.log('+++');
+    imgUploadPreview.classList.add('effect-level transform: scale(0.75)');
+  });
+
+});
