@@ -47,6 +47,8 @@ imgUploadOverlay.addEventListener('click', function (evt) {
     scaleControlValue.value = numericScaleControlValue + '%';
   }
 
+  // При повторном открытии рисунка и предыдущем значении контрола не 50, показывается все равно 50
+
   var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
 
   scaleControlValue.addEventListener('input', function () {
