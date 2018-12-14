@@ -31,7 +31,7 @@ var onUploadOverlayEcsPress = function (evt) {
 var cleanOverlayData = function () {
   uploadFile.value = uploadFile.defaultValue;
   imgUploadPreview.querySelector('img').style.transform = 'scale(1)';
-  scaleControlValue.value = '100%';
+  scaleControlValue.value = scaleControlValue.defaultValue;
   scaleControlValue.setAttribute('value', '100%');
   console.log(uploadFile, scaleControlValue);
 };
@@ -57,7 +57,7 @@ imgUploadScale.addEventListener('click', function (evt) {
     numericScaleControlValue = Math.min(100, numericScaleControlValue + 25);
   }
   scaleControlValue.value = numericScaleControlValue + '%';
-  scaleControlValue.setAttribute('value', numericScaleControlValue + '%');
+  // scaleControlValue.setAttribute('value', numericScaleControlValue + '%');
 
   var scale = 'scale(' + numericScaleControlValue / 100 + ')';
   imgUploadPreview.querySelector('img').style.transform = scale;
