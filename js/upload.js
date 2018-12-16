@@ -8,6 +8,10 @@ var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
 var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
 var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
 
+var imgUploadScale = imgUploadOverlay.querySelector('.img-upload__scale');
+var scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
+var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
+
 var uploadFile = imgUpload.querySelector('#upload-file');
 
 var openUploadOverlay = function () {
@@ -33,6 +37,7 @@ var cleanOverlayData = function () {
   imgUploadPreview.querySelector('img').style.transform = 'scale(1)';
   scaleControlValue.value = scaleControlValue.defaultValue;
   scaleControlValue.setAttribute('value', '100%');
+  numericScaleControlValue = 100;
   console.log(uploadFile, scaleControlValue);
 };
 
@@ -45,9 +50,7 @@ imgUploadCancel.addEventListener('keydown', function (evt) {
 
 uploadFile.addEventListener('change', openUploadOverlay);
 
-var imgUploadScale = imgUploadOverlay.querySelector('.img-upload__scale');
-var scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
-var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
+
 
 imgUploadScale.addEventListener('click', function (evt) {
   var target = evt.target;
