@@ -7,9 +7,7 @@ var imgUpload = document.querySelector('.img-upload');
 var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
 var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
 var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
-
-var imgUploadScale = imgUploadOverlay.querySelector('.img-upload__scale');
-var scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
+var loadedImage = imgUploadPreview.querySelector('img');
 
 var uploadFile = imgUpload.querySelector('#upload-file');
 
@@ -33,9 +31,12 @@ var onUploadOverlayEcsPress = function (evt) {
 
 var cleanOverlayData = function () {
   uploadFile.value = uploadFile.defaultValue;
-  imgUploadPreview.querySelector('img').style.transform = 'scale(1)';
-  scaleControlValue.value = scaleControlValue.defaultValue;
-  scaleControlValue.setAttribute('value', '100%');
+
+  // Открытие следующего фото происходит полноразмерным
+  loadedImage.style.transform = 'scale(1)';
+
+  // Открытие следующего фото происходит без прошлых эффектов
+  window.effects.removePreviousEffect();
 };
 
 imgUploadCancel.addEventListener('click', closeUploadOverlay);

@@ -9,6 +9,7 @@
   var scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
   var scaleControlSmaller = imgUploadScale.querySelector('.scale__control--smaller');
   var scaleControlBigger = imgUploadScale.querySelector('.scale__control--bigger');
+  var loadedImage = imgUploadPreview.querySelector('img');
 
   var setScaleValue = function (diff) {
     var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
@@ -17,7 +18,7 @@
     scaleControlValue.value = numericScaleControlValue + '%';
 
     var scale = 'scale(' + numericScaleControlValue / 100 + ')';
-    imgUploadPreview.querySelector('img').style.transform = scale;
+    loadedImage.style.transform = scale;
   };
 
   scaleControlSmaller.addEventListener('click', function () {
