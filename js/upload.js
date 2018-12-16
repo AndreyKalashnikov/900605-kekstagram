@@ -10,7 +10,6 @@ var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
 
 var imgUploadScale = imgUploadOverlay.querySelector('.img-upload__scale');
 var scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
-var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
 
 var uploadFile = imgUpload.querySelector('#upload-file');
 
@@ -37,8 +36,6 @@ var cleanOverlayData = function () {
   imgUploadPreview.querySelector('img').style.transform = 'scale(1)';
   scaleControlValue.value = scaleControlValue.defaultValue;
   scaleControlValue.setAttribute('value', '100%');
-  numericScaleControlValue = 100;
-  console.log(uploadFile, scaleControlValue);
 };
 
 imgUploadCancel.addEventListener('click', closeUploadOverlay);
@@ -49,22 +46,4 @@ imgUploadCancel.addEventListener('keydown', function (evt) {
 });
 
 uploadFile.addEventListener('change', openUploadOverlay);
-
-
-
-imgUploadScale.addEventListener('click', function (evt) {
-  var target = evt.target;
-  if (target.classList.contains('scale__control--smaller')) {
-    numericScaleControlValue = Math.max(0, numericScaleControlValue - 25);
-  } else if (target.classList.contains('scale__control--bigger')) {
-    numericScaleControlValue = Math.min(100, numericScaleControlValue + 25);
-  }
-  scaleControlValue.value = numericScaleControlValue + '%';
-  // scaleControlValue.setAttribute('value', numericScaleControlValue + '%');
-
-  var scale = 'scale(' + numericScaleControlValue / 100 + ')';
-  imgUploadPreview.querySelector('img').style.transform = scale;
-
-  console.log(uploadFile, scaleControlValue);
-});
 
