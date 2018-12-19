@@ -32,6 +32,7 @@ var onUploadOverlayEcsPress = function (evt) {
 };
 
 var cleanOverlayData = function () {
+  // Значение полей по умолчанию
   uploadFile.value = uploadFile.defaultValue;
   textHashtags.value = textHashtags.defaultValue;
   textDescriprion.value = textDescriprion.defaultValue;
