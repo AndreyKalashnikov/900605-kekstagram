@@ -8,6 +8,8 @@ var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
 var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
 var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
 var loadedImage = imgUploadPreview.querySelector('img');
+var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
+var textDescriprion = imgUploadOverlay.querySelector('.text__description');
 
 var uploadFile = imgUpload.querySelector('#upload-file');
 
@@ -31,6 +33,8 @@ var onUploadOverlayEcsPress = function (evt) {
 
 var cleanOverlayData = function () {
   uploadFile.value = uploadFile.defaultValue;
+  textHashtags.value = textHashtags.defaultValue;
+  textDescriprion.value = textDescriprion.defaultValue;
 
   // Открытие следующего фото происходит полноразмерным
   loadedImage.style.transform = 'scale(1)';
@@ -48,3 +52,18 @@ imgUploadCancel.addEventListener('keydown', function (evt) {
 
 uploadFile.addEventListener('change', openUploadOverlay);
 
+textHashtags.addEventListener('focusin', function () {
+  document.removeEventListener('keydown', onUploadOverlayEcsPress);
+});
+
+textHashtags.addEventListener('focusout', function () {
+  document.addEventListener('keydown', onUploadOverlayEcsPress);
+});
+
+textDescriprion.addEventListener('focusin', function () {
+  document.removeEventListener('keydown', onUploadOverlayEcsPress);
+});
+
+textDescriprion.addEventListener('focusout', function () {
+  document.addEventListener('keydown', onUploadOverlayEcsPress);
+});
