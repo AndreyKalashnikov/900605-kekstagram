@@ -1,70 +1,74 @@
 'use strict';
 
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
+(function () {
 
-var imgUpload = document.querySelector('.img-upload');
-var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
-var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
-var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
-var loadedImage = imgUploadPreview.querySelector('img');
-var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
-var textDescriprion = imgUploadOverlay.querySelector('.text__description');
+  var ESC_KEYCODE = 27;
+  var ENTER_KEYCODE = 13;
 
-var uploadFile = imgUpload.querySelector('#upload-file');
+  var imgUpload = document.querySelector('.img-upload');
+  var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
+  var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
+  var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
+  var loadedImage = imgUploadPreview.querySelector('img');
+  var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
+  var textDescriprion = imgUploadOverlay.querySelector('.text__description');
 
-var openUploadOverlay = function () {
-  imgUploadOverlay.classList.remove('hidden');
-  document.addEventListener('keydown', onUploadOverlayEcsPress);
-};
+  var uploadFile = imgUpload.querySelector('#upload-file');
 
-var closeUploadOverlay = function () {
-  imgUploadOverlay.classList.add('hidden');
-  document.removeEventListener('keydown', onUploadOverlayEcsPress);
-  cleanOverlayData();
-};
+  var openUploadOverlay = function () {
+    imgUploadOverlay.classList.remove('hidden');
+    document.addEventListener('keydown', onUploadOverlayEcsPress);
+  };
 
-var onUploadOverlayEcsPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  var closeUploadOverlay = function () {
     imgUploadOverlay.classList.add('hidden');
+    document.removeEventListener('keydown', onUploadOverlayEcsPress);
     cleanOverlayData();
-  }
-};
+  };
 
-var cleanOverlayData = function () {
-  // Значение полей по умолчанию
-  uploadFile.value = uploadFile.defaultValue;
-  textHashtags.value = textHashtags.defaultValue;
-  textDescriprion.value = textDescriprion.defaultValue;
+  var onUploadOverlayEcsPress = function (evt) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      imgUploadOverlay.classList.add('hidden');
+      cleanOverlayData();
+    }
+  };
 
-  // Открытие следующего фото происходит полноразмерным
-  loadedImage.style.transform = 'scale(1)';
+  var cleanOverlayData = function () {
+    // Значение полей по умолчанию
+    uploadFile.value = uploadFile.defaultValue;
+    textHashtags.value = textHashtags.defaultValue;
+    textDescriprion.value = textDescriprion.defaultValue;
 
-  // Открытие следующего фото происходит без прошлых эффектов
-  window.effects.removePreviousEffect();
-};
+    // Открытие следующего фото происходит полноразмерным
+    loadedImage.style.transform = 'scale(1)';
 
-imgUploadCancel.addEventListener('click', closeUploadOverlay);
-imgUploadCancel.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closeUploadOverlay();
-  }
-});
+    // Открытие следующего фото происходит без прошлых эффектов
+    window.effects.removePreviousEffect();
+  };
 
-uploadFile.addEventListener('change', openUploadOverlay);
+  imgUploadCancel.addEventListener('click', closeUploadOverlay);
+  imgUploadCancel.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      closeUploadOverlay();
+    }
+  });
 
-textHashtags.addEventListener('focusin', function () {
-  document.removeEventListener('keydown', onUploadOverlayEcsPress);
-});
+  uploadFile.addEventListener('change', openUploadOverlay);
 
-textHashtags.addEventListener('focusout', function () {
-  document.addEventListener('keydown', onUploadOverlayEcsPress);
-});
+  textHashtags.addEventListener('focusin', function () {
+    document.removeEventListener('keydown', onUploadOverlayEcsPress);
+  });
 
-textDescriprion.addEventListener('focusin', function () {
-  document.removeEventListener('keydown', onUploadOverlayEcsPress);
-});
+  textHashtags.addEventListener('focusout', function () {
+    document.addEventListener('keydown', onUploadOverlayEcsPress);
+  });
 
-textDescriprion.addEventListener('focusout', function () {
-  document.addEventListener('keydown', onUploadOverlayEcsPress);
-});
+  textDescriprion.addEventListener('focusin', function () {
+    document.removeEventListener('keydown', onUploadOverlayEcsPress);
+  });
+
+  textDescriprion.addEventListener('focusout', function () {
+    document.addEventListener('keydown', onUploadOverlayEcsPress);
+  });
+
+})();
