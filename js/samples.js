@@ -49,29 +49,30 @@
     return photoElement;
   };
 
+  window.backend.load(function(photos))
   var fragment = document.createDocumentFragment();
 
-  var photos = [];
+  // var photos = [];
 
-  for (var i = 0; i < TOTAL_SAMPLES; i++) {
-    var totalLikes = window.main.getRandomFromDiaposon(15, 200);
-    var totalMessages = window.main.getRandomFromDiaposon(7, 15);
-    var messagesArr = window.main.getAll(COMMENTS, totalMessages);
+  // for (var i = 0; i < TOTAL_SAMPLES; i++) {
+  //   var totalLikes = window.main.getRandomFromDiaposon(15, 200);
+  //   var totalMessages = window.main.getRandomFromDiaposon(7, 15);
+  //   var messagesArr = window.main.getAll(COMMENTS, totalMessages);
 
-    photos.push({
-      url: 'photos/' + randomUrls[i] + '.jpg',
-      likes: totalLikes,
-      messages: totalMessages,
-      message: messagesArr,
-      name: window.main.getByIndex(NAMES, window.main.getRandomFromDiaposon(0, NAMES.length - 1)),
-      description: window.main.getByIndex(DESCRIPTIONS, window.main.getRandomFromDiaposon(0, DESCRIPTIONS.length - 1)),
-      author: window.main.getByIndex(NAMES, window.main.getRandomFromDiaposon(0, NAMES.length - 1)),
-      avatar: window.main.getRandomFromDiaposon(1, 6)
-    });
+  //   photos.push({
+  //     url: 'photos/' + randomUrls[i] + '.jpg',
+  //     likes: totalLikes,
+  //     messages: totalMessages,
+  //     message: messagesArr,
+  //     name: window.main.getByIndex(NAMES, window.main.getRandomFromDiaposon(0, NAMES.length - 1)),
+  //     description: window.main.getByIndex(DESCRIPTIONS, window.main.getRandomFromDiaposon(0, DESCRIPTIONS.length - 1)),
+  //     author: window.main.getByIndex(NAMES, window.main.getRandomFromDiaposon(0, NAMES.length - 1)),
+  //     avatar: window.main.getRandomFromDiaposon(1, 6)
+  //   });
 
-    var newPhoto = renderPhoto(photos[i]);
-    fragment.appendChild(newPhoto);
-  }
+  //   var newPhoto = renderPhoto(photos[i]);
+  //   fragment.appendChild(newPhoto);
+  // }
 
   var pictures = document.querySelector('.pictures');
   pictures.appendChild(fragment);
