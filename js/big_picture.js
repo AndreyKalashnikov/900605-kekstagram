@@ -33,10 +33,10 @@
   };
 
   var showComments = function (picture) {
-    var commentTemplate = document.querySelector('#comments').content.querySelector('li');
-    console.log(commentTemplate);
-    var commentElement = commentTemplate.clonNode(true);
-    commentElement.querySelector('.social__picture').src = picture.avatar;
+    var commentTemplate = document.querySelector('#comments').content.querySelector('.social__comment');
+    var commentElement = commentTemplate.cloneNode(true);
+    commentElement.querySelector('.social__picture').src = picture.comments.avatar;
+    console.log(commentElement.querySelector('.social__picture').src, picture.comments.name);
   };
 
   bigPictureCancel.addEventListener('click', closeBigPicture);

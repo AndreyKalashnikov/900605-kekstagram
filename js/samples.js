@@ -16,6 +16,7 @@
       window.bigPicture.showBigPicture(photo);
       window.bigPicture.openBigPicture();
       window.bigPicture.showComments(photo);
+      console.log(photo);
     });
 
     return photoElement;
