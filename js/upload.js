@@ -5,7 +5,8 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
-  var imgUpload = document.querySelector('.img-upload');
+  var pictures = document.querySelector('.pictures');
+  var imgUpload = pictures.querySelector('.img-upload');
   var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
   var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
   var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
@@ -70,5 +71,9 @@
   textDescriprion.addEventListener('focusout', function () {
     document.addEventListener('keydown', onUploadOverlayEcsPress);
   });
+
+  window.upload = {
+    closeUploadOverlay: closeUploadOverlay
+  };
 
 })();
