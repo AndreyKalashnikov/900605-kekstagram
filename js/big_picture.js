@@ -7,7 +7,7 @@
 
   var bigPicture = document.querySelector('.big-picture');
   var bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
-  var bigPictureComments = bigPicture.querySelector('.big-picture__cancel');
+  var bigPictureComments = bigPicture.querySelector('.social__comments');
 
   var showBigPicture = function (picture) {
     bigPicture.querySelector('img').src = picture.url;
