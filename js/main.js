@@ -23,12 +23,17 @@
   };
 
   var getRandomArray = function (array) {
+    var cloneArray = [];
+    for (var j = 0; j < array.length; j++) {
+      cloneArray.push(array[j]);
+    }
+
     var result = [];
 
-    for (var i = 0; i < array.length; i++) {
-      var random = getRandomFromDiaposon(0, array.length - 1);
-      result.push(array[random]);
-      array.splice(random, 1);
+    for (var i = 0; i < cloneArray.length; i++) {
+      var random = getRandomFromDiaposon(0, cloneArray.length - 1);
+      result.push(cloneArray[random]);
+      cloneArray.splice(random, 1);
       i--;
     }
     return result;
