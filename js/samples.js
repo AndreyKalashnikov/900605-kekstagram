@@ -4,8 +4,7 @@
 
   var pictures = document.querySelector('.pictures');
   var photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
-  var samples = [];
+  var imgFilters = document.querySelector('.img-filters');
 
   var renderPhoto = function (photo) {
     var photoElement = photoTemplate.cloneNode(true);
@@ -24,13 +23,17 @@
   };
 
   var onSuccess = function (data) {
+    imgFilters.classList.remove('img-filters--inactive');
     samples = data;
+    window.filter.changeFilter(samples);
     showSamples(samples);
   };
 
   var onError = function (text) {
     window.error.openErrorPopup(text);
   };
+
+  var samples = [];
 
   var showSamples = function (array) {
     var fragment = document.createDocumentFragment();
@@ -42,5 +45,9 @@
   };
 
   window.backend.load(onSuccess, onError);
+
+  window.samples = {
+    showSamples: showSamples
+  };
 
 })();

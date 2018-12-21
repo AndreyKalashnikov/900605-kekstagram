@@ -28,18 +28,12 @@
     bigPicture.classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
     document.removeEventListener('keydown', onBigPictureEscPress);
-    removeChildren(bigPictureComments);
+    window.main.removeChildren(bigPictureComments);
   };
 
   var onBigPictureEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
       closeBigPicture();
-    }
-  };
-
-  var removeChildren = function (elem) {
-    while (elem.lastChild) {
-      elem.removeChild(elem.lastChild);
     }
   };
 
