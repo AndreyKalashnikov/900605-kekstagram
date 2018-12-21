@@ -34,7 +34,6 @@
   };
 
   var cleanOverlayData = function () {
-    console.log('+');
     uploadFile.value = uploadFile.defaultValue;
     textHashtags.value = textHashtags.defaultValue;
     textDescriprion.value = textDescriprion.defaultValue;

@@ -19,7 +19,6 @@
   imgUploadForm.addEventListener('submit', function (evt) {
     window.backend.upload(new FormData(imgUploadForm), onSuccess, onError);
     window.upload.closeUploadOverlay();
-    console.log('=-=')
     evt.preventDefault();
   });
 

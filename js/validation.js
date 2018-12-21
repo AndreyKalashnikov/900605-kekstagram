@@ -9,13 +9,13 @@
   var MAX_HASHTAGS_COUNT = 5;
   var MAX_HASHTAG_LENGTH = 20;
 
-  var MESSAGES = {
-    firstSymbol: 'Хэштег должен начинаться с #. Используйте пробелы только для разделения хэштегов',
-    onlyHashtag: 'Хэштег не может состоять только из символа #',
-    maxLength: 'Максимальная длина хэштега - 20 символов',
-    maxCount: 'Максимальное количество хэштегов - 5',
-    same: 'Введите, пожалуйста, разные хэштеги',
-    noSpace: 'Введите, пожалуйста, следующий хэштег через пробел'
+  var Messages = {
+    FIRST_SYMBOL: 'Хэштег должен начинаться с #. Используйте пробелы только для разделения хэштегов',
+    ONLY_HASHTAG: 'Хэштег не может состоять только из символа #',
+    MAX_LENGTH: 'Максимальная длина хэштега - 20 символов',
+    MAX_COUNT: 'Максимальное количество хэштегов - 5',
+    SAME: 'Введите, пожалуйста, разные хэштеги',
+    NO_SPACE: 'Введите, пожалуйста, следующий хэштег через пробел'
   };
 
   var checkSameHashtags = function (array) {
@@ -34,22 +34,22 @@
     var mistakes = {};
     for (var i = 0; i < array.length; i++) {
       if ((array[i][0] !== '#') && (array[i][0] !== ' ')) {
-        textHashtags.setCustomValidity(MESSAGES.firstSymbol);
+        textHashtags.setCustomValidity(Messages.FIRST_SYMBOL);
         mistakes.firstSymbol = true;
       } else if (array[i].length === 1) {
-        textHashtags.setCustomValidity(MESSAGES.onlyHashtag);
+        textHashtags.setCustomValidity(Messages.ONLY_HASHTAG);
         mistakes.onlyHashtag = true;
       } else if (array[i].length > MAX_HASHTAG_LENGTH) {
-        textHashtags.setCustomValidity(MESSAGES.maxLength);
+        textHashtags.setCustomValidity(Messages.MAX_LENGTH);
         mistakes.maxLength = true;
       } else if (array.length > MAX_HASHTAGS_COUNT) {
-        textHashtags.setCustomValidity(MESSAGES.maxCount);
+        textHashtags.setCustomValidity(Messages.MAX_COUNT);
         mistakes.maxCount = true;
       } else if (checkSameHashtags(array)) {
-        textHashtags.setCustomValidity(MESSAGES.same);
+        textHashtags.setCustomValidity(Messages.SAME);
         mistakes.same = true;
       } else if ((array[i].indexOf('#', 1)) > -1) {
-        textHashtags.setCustomValidity(MESSAGES.noSpace);
+        textHashtags.setCustomValidity(Messages.NO_SPACE);
         mistakes.noSpace = true;
       } else {
         counter++;
@@ -58,17 +58,17 @@
         textHashtags.setCustomValidity('');
       } else {
         if (mistakes.firstSymbol) {
-          textHashtags.setCustomValidity(MESSAGES.firstSymbol);
+          textHashtags.setCustomValidity(Messages.FIRST_SYMBOL);
         } else if (mistakes.onlyHashtag) {
-          textHashtags.setCustomValidity(MESSAGES.onlyHashtag);
+          textHashtags.setCustomValidity(Messages.ONLY_HASHTAG);
         } else if (mistakes.maxLength) {
-          textHashtags.setCustomValidity(MESSAGES.maxLength);
+          textHashtags.setCustomValidity(Messages.MAX_LENGTH);
         } else if (mistakes.maxCount) {
-          textHashtags.setCustomValidity(MESSAGES.maxCount);
+          textHashtags.setCustomValidity(Messages.MAX_COUNT);
         } else if (mistakes.same) {
-          textHashtags.setCustomValidity(MESSAGES.same);
+          textHashtags.setCustomValidity(Messages.SAME);
         } else if (mistakes.noSpace) {
-          textHashtags.setCustomValidity(MESSAGES.noSpace);
+          textHashtags.setCustomValidity(Messages.NO_SPACE);
         }
       }
     }

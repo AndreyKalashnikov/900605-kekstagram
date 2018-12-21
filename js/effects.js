@@ -12,7 +12,7 @@
   var loadedImage = imgUploadPreview.querySelector('img');
   var imgUploadEffectLevel = imgUploadOverlay.querySelector('.img-upload__effect-level');
 
-  var effects = {
+  var Effects = {
     chrome: {
       CLASS: 'effects__preview--chrome',
       PROPERTY: 'grayscale',
@@ -54,7 +54,7 @@
   };
 
   var removePreviousEffect = function () {
-    loadedImage.classList.remove(effects.chrome.CLASS, effects.sepia.CLASS, effects.marvin.CLASS, effects.phobos.CLASS, effects.heat.CLASS);
+    loadedImage.classList.remove(Effects.chrome.CLASS, Effects.sepia.CLASS, Effects.marvin.CLASS, Effects.phobos.CLASS, Effects.heat.CLASS);
     loadedImage.style.filter = '';
     imgUploadEffectLevel.classList.add('hidden');
   };
@@ -66,16 +66,16 @@
   };
 
   var setEffect = function (percent) {
-    if (loadedImage.classList.contains(effects.chrome.CLASS)) {
-      loadedImage.style.filter = effects.chrome.PROPERTY + '(' + (percent * (effects.chrome.MAX_VALUE - effects.chrome.MIN_VALUE) + effects.chrome.MIN_VALUE) + effects.chrome.MEASURE + ')';
-    } else if (loadedImage.classList.contains(effects.sepia.CLASS)) {
-      loadedImage.style.filter = effects.sepia.PROPERTY + '(' + (percent * (effects.sepia.MAX_VALUE - effects.sepia.MIN_VALUE) + effects.sepia.MIN_VALUE) + effects.sepia.MEASURE + ')';
-    } else if (loadedImage.classList.contains(effects.marvin.CLASS)) {
-      loadedImage.style.filter = effects.marvin.PROPERTY + '(' + (percent * (effects.marvin.MAX_VALUE - effects.marvin.MIN_VALUE) + effects.marvin.MIN_VALUE) + effects.marvin.MEASURE + ')';
-    } else if (loadedImage.classList.contains(effects.phobos.CLASS)) {
-      loadedImage.style.filter = effects.phobos.PROPERTY + '(' + (percent * (effects.phobos.MAX_VALUE - effects.phobos.MIN_VALUE) + effects.phobos.MIN_VALUE) + effects.phobos.MEASURE + ')';
-    } else if (loadedImage.classList.contains(effects.heat.CLASS)) {
-      loadedImage.style.filter = effects.heat.PROPERTY + '(' + (percent * (effects.heat.MAX_VALUE - effects.heat.MIN_VALUE) + effects.heat.MIN_VALUE) + effects.heat.MEASURE + ')';
+    if (loadedImage.classList.contains(Effects.chrome.CLASS)) {
+      loadedImage.style.filter = Effects.chrome.PROPERTY + '(' + (percent * (Effects.chrome.MAX_VALUE - Effects.chrome.MIN_VALUE) + Effects.chrome.MIN_VALUE) + Effects.chrome.MEASURE + ')';
+    } else if (loadedImage.classList.contains(Effects.sepia.CLASS)) {
+      loadedImage.style.filter = Effects.sepia.PROPERTY + '(' + (percent * (Effects.sepia.MAX_VALUE - Effects.sepia.MIN_VALUE) + Effects.sepia.MIN_VALUE) + Effects.sepia.MEASURE + ')';
+    } else if (loadedImage.classList.contains(Effects.marvin.CLASS)) {
+      loadedImage.style.filter = Effects.marvin.PROPERTY + '(' + (percent * (Effects.marvin.MAX_VALUE - Effects.marvin.MIN_VALUE) + Effects.marvin.MIN_VALUE) + Effects.marvin.MEASURE + ')';
+    } else if (loadedImage.classList.contains(Effects.phobos.CLASS)) {
+      loadedImage.style.filter = Effects.phobos.PROPERTY + '(' + (percent * (Effects.phobos.MAX_VALUE - Effects.phobos.MIN_VALUE) + Effects.phobos.MIN_VALUE) + Effects.phobos.MEASURE + ')';
+    } else if (loadedImage.classList.contains(Effects.heat.CLASS)) {
+      loadedImage.style.filter = Effects.heat.PROPERTY + '(' + (percent * (Effects.heat.MAX_VALUE - Effects.heat.MIN_VALUE) + Effects.heat.MIN_VALUE) + Effects.heat.MEASURE + ')';
     }
   };
 
@@ -86,22 +86,22 @@
 
     var target = evt.target;
 
-    if (target.classList.contains(effects.none.CLASS)) {
+    if (target.classList.contains(Effects.none.CLASS)) {
       imgUploadEffectLevel.classList.add('hidden');
-    } else if (target.classList.contains(effects.chrome.CLASS)) {
-      loadedImage.classList.add(effects.chrome.CLASS);
+    } else if (target.classList.contains(Effects.chrome.CLASS)) {
+      loadedImage.classList.add(Effects.chrome.CLASS);
       showFullSlider();
-    } else if (target.classList.contains(effects.sepia.CLASS)) {
-      loadedImage.classList.add(effects.sepia.CLASS);
+    } else if (target.classList.contains(Effects.sepia.CLASS)) {
+      loadedImage.classList.add(Effects.sepia.CLASS);
       showFullSlider();
-    } else if (target.classList.contains(effects.marvin.CLASS)) {
-      loadedImage.classList.add(effects.marvin.CLASS);
+    } else if (target.classList.contains(Effects.marvin.CLASS)) {
+      loadedImage.classList.add(Effects.marvin.CLASS);
       showFullSlider();
-    } else if (target.classList.contains(effects.phobos.CLASS)) {
-      loadedImage.classList.add(effects.phobos.CLASS);
+    } else if (target.classList.contains(Effects.phobos.CLASS)) {
+      loadedImage.classList.add(Effects.phobos.CLASS);
       showFullSlider();
-    } else if (target.classList.contains(effects.heat.CLASS)) {
-      loadedImage.classList.add(effects.heat.CLASS);
+    } else if (target.classList.contains(Effects.heat.CLASS)) {
+      loadedImage.classList.add(Effects.heat.CLASS);
       showFullSlider();
     }
   });
