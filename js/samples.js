@@ -5,6 +5,8 @@
   var pictures = document.querySelector('.pictures');
   var photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+  var samples = [];
+
   var renderPhoto = function (photo) {
     var photoElement = photoTemplate.cloneNode(true);
 
@@ -21,14 +23,24 @@
     return photoElement;
   };
 
-  window.backend.load(function (array) {
+  var onSuccess = function (data) {
+    samples = data;
+    showSamples(samples);
+  };
+
+  var onError = function (text) {
+    window.error.openErrorPopup(text);
+  };
+
+  var showSamples = function (array) {
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < array.length; i++) {
       fragment.appendChild(renderPhoto(array[i]));
     }
     pictures.appendChild(fragment);
-  });
+  };
 
+  window.backend.load(onSuccess, onError);
 
 })();
