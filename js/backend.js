@@ -54,6 +54,7 @@
     xhr.timeout = TIMEOUT;
 
     xhr.addEventListener('load', function () {
+      // console.log(xhr.status);
       switch (xhr.status) {
         case Code.OK:
           onSuccess(xhr.response);

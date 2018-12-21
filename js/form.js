@@ -10,15 +10,19 @@
 
   var onSuccess = function () {
     window.upload.closeUploadOverlay();
+    window.success.showSuccessPopup();
+    // console.log('+++');
   };
 
-  var onError = function () {
+  var onError = function (message) {
     window.upload.closeUploadOverlay();
+    window.error.openErrorPopup(message);
+    // console.log('---');
   };
 
   imgUploadForm.addEventListener('submit', function (evt) {
     window.backend.upload(new FormData(imgUploadForm), onSuccess, onError);
-
+    window.upload.closeUploadOverlay();
     evt.preventDefault();
   });
 
