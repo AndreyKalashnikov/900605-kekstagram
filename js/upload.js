@@ -9,8 +9,6 @@
   var imgUpload = pictures.querySelector('.img-upload');
   var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
   var imgUploadCancel = imgUploadOverlay.querySelector('.img-upload__cancel');
-  var imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
-  var loadedImage = imgUploadPreview.querySelector('img');
   var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
   var textDescriprion = imgUploadOverlay.querySelector('.text__description');
   var uploadFile = imgUpload.querySelector('#upload-file');
@@ -34,10 +32,9 @@
   };
 
   var cleanOverlayData = function () {
-    uploadFile.value = uploadFile.defaultValue;
+    window.scale.closeScale();
     textHashtags.value = textHashtags.defaultValue;
     textDescriprion.value = textDescriprion.defaultValue;
-    loadedImage.style.transform = 'scale(1)';
     window.effects.removePreviousEffect();
   };
 

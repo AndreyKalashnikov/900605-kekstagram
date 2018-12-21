@@ -28,4 +28,13 @@
     setScaleValue(25);
   });
 
+  var closeScale = function () {
+    scaleControlValue.value = 100 + '%';
+    loadedImage.style = '';
+  };
+
+  window.scale = {
+    closeScale: closeScale
+  };
+
 })();

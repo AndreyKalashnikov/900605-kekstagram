@@ -7,12 +7,10 @@
   var imgUploadForm = imgUpload.querySelector('.img-upload__form');
 
   var onSuccess = function () {
-    window.upload.closeUploadOverlay();
     window.success.showSuccessPopup();
   };
 
   var onError = function (message) {
-    window.upload.closeUploadOverlay();
     window.error.openErrorPopup(message);
   };
 
