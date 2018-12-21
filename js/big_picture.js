@@ -49,7 +49,6 @@
     var commentsFragment = document.createDocumentFragment();
     var commentsTemplate = document.querySelector('#comments').content.querySelector('.social__comment');
 
-    // Отображаются только START_COMMENTS_COUNT=5 комментариев
     var count = Math.min(START_COMMENTS_COUNT, picture.comments.length);
     for (var i = 0; i < count; i++) {
       var commentsElement = commentsTemplate.cloneNode(true);

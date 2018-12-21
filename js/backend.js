@@ -13,7 +13,7 @@
     INTERNAL_SERVER_ERROR: 500
   };
 
-  var TIMEOUT = 10000; // 10s
+  var TIMEOUT = 10000;
 
   var load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
@@ -54,7 +54,6 @@
     xhr.timeout = TIMEOUT;
 
     xhr.addEventListener('load', function () {
-      // console.log(xhr.status);
       switch (xhr.status) {
         case Code.OK:
           onSuccess(xhr.response);

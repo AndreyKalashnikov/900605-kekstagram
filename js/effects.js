@@ -56,6 +56,7 @@
   var removePreviousEffect = function () {
     loadedImage.classList.remove(effects.chrome.CLASS, effects.sepia.CLASS, effects.marvin.CLASS, effects.phobos.CLASS, effects.heat.CLASS);
     loadedImage.style.filter = '';
+    imgUploadEffectLevel.classList.add('hidden');
   };
 
   var showFullSlider = function () {

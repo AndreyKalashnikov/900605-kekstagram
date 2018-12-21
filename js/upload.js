@@ -13,7 +13,6 @@
   var loadedImage = imgUploadPreview.querySelector('img');
   var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
   var textDescriprion = imgUploadOverlay.querySelector('.text__description');
-
   var uploadFile = imgUpload.querySelector('#upload-file');
 
   var openUploadOverlay = function () {
@@ -35,15 +34,11 @@
   };
 
   var cleanOverlayData = function () {
-    // Значение полей по умолчанию
+    console.log('+');
     uploadFile.value = uploadFile.defaultValue;
     textHashtags.value = textHashtags.defaultValue;
     textDescriprion.value = textDescriprion.defaultValue;
-
-    // Открытие следующего фото происходит полноразмерным
     loadedImage.style.transform = 'scale(1)';
-
-    // Открытие следующего фото происходит без прошлых эффектов
     window.effects.removePreviousEffect();
   };
 

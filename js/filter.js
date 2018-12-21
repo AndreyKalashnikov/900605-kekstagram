@@ -10,19 +10,18 @@
     var pictures = document.querySelector('.pictures');
 
     var setFilterNew = function (array) {
-      return window.main.getRandomArray(array).slice(0, 10);
+      return window.main.getRandomArray(array.slice()).slice(0, 10);
     };
 
     var setFilterDiscussed = function (array) {
-
+      return array.slice().sort(function (foo, bar) {
+        return bar.comments.length - foo.comments.length;
+      });
     };
 
     var setFilter = function (evt) {
-      console.log('+++');
-      console.log(data);
       var target = evt.target;
       var picture = pictures.querySelectorAll('.picture');
-      console.log('+', pictures);
       picture.forEach(function (item) {
         pictures.removeChild(item);
       });
@@ -39,9 +38,8 @@
       }
     };
 
-    var debounceFilters = window.debounce(setFilter);
+    var debounceFilters = window.debounce.debounce(setFilter);
     imgFiltersForm.addEventListener('click', function (evt) {
-      console.log('++');
       var target = evt.target;
       if (target.tagName === 'BUTTON') {
         changeButton(target.id);
