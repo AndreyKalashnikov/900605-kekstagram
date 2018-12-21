@@ -33,6 +33,7 @@
 
   var cleanOverlayData = function () {
     window.scale.closeScale();
+    uploadFile.value = uploadFile.defaultValue;
     textHashtags.value = textHashtags.defaultValue;
     textDescriprion.value = textDescriprion.defaultValue;
     window.effects.removePreviousEffect();
