@@ -14,7 +14,7 @@
   var setScaleValue = function (diff) {
     var numericScaleControlValue = parseInt(scaleControlValue.value, 10);
     numericScaleControlValue += diff;
-    numericScaleControlValue = Math.min(100, Math.max(0, numericScaleControlValue));
+    numericScaleControlValue = Math.min(100, Math.max(25, numericScaleControlValue));
     scaleControlValue.value = numericScaleControlValue + '%';
 
     var scale = 'scale(' + numericScaleControlValue / 100 + ')';

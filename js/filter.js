@@ -21,8 +21,8 @@
 
     var setFilter = function (evt) {
       var target = evt.target;
-      var picture = pictures.querySelectorAll('.picture');
-      picture.forEach(function (item) {
+      var smallPictures = pictures.querySelectorAll('.picture');
+      smallPictures.forEach(function (item) {
         pictures.removeChild(item);
       });
       switch (target.id) {
@@ -48,9 +48,9 @@
 
     });
     var changeButton = function (id) {
-      for (var i = 0; i < imgFiltersButton.length; i++) {
-        imgFiltersButton[i].classList.remove('img-filters__button--active');
-      }
+      imgFiltersButton.forEach(function (item) {
+        item.classList.remove('img-filters__button--active');
+      });
       imgFiltersForm.querySelector('#' + id).classList.add('img-filters__button--active');
     };
   };

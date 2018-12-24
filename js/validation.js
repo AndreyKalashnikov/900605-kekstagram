@@ -5,6 +5,8 @@
   var imgUpload = document.querySelector('.img-upload');
   var imgUploadOverlay = imgUpload.querySelector('.img-upload__overlay');
   var textHashtags = imgUploadOverlay.querySelector('.text__hashtags');
+  var textDescription = imgUploadOverlay.querySelector('.text__description');
+  var imgUploadSubmit = imgUploadOverlay.querySelector('.img-upload__submit');
 
   var MAX_HASHTAGS_COUNT = 5;
   var MAX_HASHTAG_LENGTH = 20;
@@ -15,7 +17,7 @@
     MAX_LENGTH: 'Максимальная длина хэштега - 20 символов',
     MAX_COUNT: 'Максимальное количество хэштегов - 5',
     SAME: 'Введите, пожалуйста, разные хэштеги',
-    NO_SPACE: 'Введите, пожалуйста, следующий хэштег через пробел'
+    NO_SPACE: 'Введите, пожалуйста, хэштеги через пробел'
   };
 
   var checkSameHashtags = function (array) {
@@ -29,58 +31,74 @@
     return false;
   };
 
-  var checkHashtags = function (array) {
+  var checkHashtags = function (hashtags) {
     var counter = 0;
     var mistakes = {};
-    for (var i = 0; i < array.length; i++) {
-      if ((array[i][0] !== '#') && (array[i][0] !== ' ')) {
+
+    hashtags.forEach(function (item) {
+      textHashtags.style.outline = 'none';
+      if ((item.charAt(0) !== '#') && (item.charAt(0) !== ' ')) {
         textHashtags.setCustomValidity(Messages.FIRST_SYMBOL);
         mistakes.firstSymbol = true;
-      } else if (array[i].length === 1) {
+      } else if (item.length === 1) {
         textHashtags.setCustomValidity(Messages.ONLY_HASHTAG);
         mistakes.onlyHashtag = true;
-      } else if (array[i].length > MAX_HASHTAG_LENGTH) {
+      } else if (item.length > MAX_HASHTAG_LENGTH) {
         textHashtags.setCustomValidity(Messages.MAX_LENGTH);
         mistakes.maxLength = true;
-      } else if (array.length > MAX_HASHTAGS_COUNT) {
+      } else if (hashtags.length > MAX_HASHTAGS_COUNT) {
         textHashtags.setCustomValidity(Messages.MAX_COUNT);
         mistakes.maxCount = true;
-      } else if (checkSameHashtags(array)) {
+      } else if (checkSameHashtags(hashtags)) {
         textHashtags.setCustomValidity(Messages.SAME);
         mistakes.same = true;
-      } else if ((array[i].indexOf('#', 1)) > -1) {
+      } else if ((item.indexOf('#', 1)) > -1) {
         textHashtags.setCustomValidity(Messages.NO_SPACE);
         mistakes.noSpace = true;
       } else {
         counter++;
       }
-      if (counter === array.length) {
-        textHashtags.setCustomValidity('');
-      } else {
-        if (mistakes.firstSymbol) {
-          textHashtags.setCustomValidity(Messages.FIRST_SYMBOL);
-        } else if (mistakes.onlyHashtag) {
-          textHashtags.setCustomValidity(Messages.ONLY_HASHTAG);
-        } else if (mistakes.maxLength) {
-          textHashtags.setCustomValidity(Messages.MAX_LENGTH);
-        } else if (mistakes.maxCount) {
-          textHashtags.setCustomValidity(Messages.MAX_COUNT);
-        } else if (mistakes.same) {
-          textHashtags.setCustomValidity(Messages.SAME);
-        } else if (mistakes.noSpace) {
-          textHashtags.setCustomValidity(Messages.NO_SPACE);
-        }
+    });
+
+    if (counter === hashtags.length) {
+      textHashtags.setCustomValidity('');
+    } else {
+      if (mistakes.firstSymbol) {
+        textHashtags.setCustomValidity(Messages.FIRST_SYMBOL);
+      } else if (mistakes.onlyHashtag) {
+        textHashtags.setCustomValidity(Messages.ONLY_HASHTAG);
+      } else if (mistakes.maxLength) {
+        textHashtags.setCustomValidity(Messages.MAX_LENGTH);
+      } else if (mistakes.maxCount) {
+        textHashtags.setCustomValidity(Messages.MAX_COUNT);
+      } else if (mistakes.same) {
+        textHashtags.setCustomValidity(Messages.SAME);
+      } else if (mistakes.noSpace) {
+        textHashtags.setCustomValidity(Messages.NO_SPACE);
       }
     }
   };
 
+  var printBorder = function (textElement) {
+    if (textElement.validity.valid) {
+      textElement.style.outline = 'none';
+    } else {
+      textElement.style.outline = '3px dotted red';
+    }
+  };
+
+  imgUploadSubmit.addEventListener('click', function () {
+    printBorder(textHashtags);
+    printBorder(textDescription);
+  });
+
   textHashtags.addEventListener('input', function () {
     var hashtagMessage = textHashtags.value;
-    var hashtags = hashtagMessage.toLowerCase().split(' ');
+    var smallHashtags = hashtagMessage.toLowerCase().split(' ');
     if (hashtagMessage === '') {
       textHashtags.setCustomValidity('');
     } else {
-      checkHashtags(hashtags);
+      checkHashtags(smallHashtags);
     }
   });
 

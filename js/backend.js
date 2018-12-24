@@ -15,7 +15,7 @@
 
   var TIMEOUT = 10000;
 
-  var load = function (onSuccess, onError) {
+  var sendRequest = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.timeout = TIMEOUT;
@@ -43,39 +43,18 @@
     xhr.addEventListener('timeout', function () {
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
+    return xhr;
+  };
+
+  var load = function (onSuccess, onError) {
+    var xhr = sendRequest(onSuccess, onError);
 
     xhr.open('GET', Url.GET);
     xhr.send();
   };
 
   var upload = function (data, onSuccess, onError) {
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
-    xhr.timeout = TIMEOUT;
-
-    xhr.addEventListener('load', function () {
-      switch (xhr.status) {
-        case Code.OK:
-          onSuccess(xhr.response);
-          break;
-        case Code.INTERNAL_SERVER_ERROR:
-          onError('INTERNAL SERVER ERROR: ' + xhr.status);
-          break;
-        case Code.NOT_FOUND:
-          onError('NOT FOUND:' + xhr.status);
-          break;
-        default:
-          onError('SERVER STATUS: ' + xhr.status);
-          break;
-      }
-    });
-
-    xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
-    });
-    xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
-    });
+    var xhr = sendRequest(onSuccess, onError);
 
     xhr.open('POST', Url.POST);
     xhr.send(data);

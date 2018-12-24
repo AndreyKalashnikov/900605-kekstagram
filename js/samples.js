@@ -35,12 +35,13 @@
 
   var samples = [];
 
-  var showSamples = function (array) {
+  var showSamples = function (smallPictures) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < array.length; i++) {
-      fragment.appendChild(renderPhoto(array[i]));
-    }
+    smallPictures.forEach(function (item) {
+      fragment.appendChild(renderPhoto(item));
+    });
+
     pictures.appendChild(fragment);
   };
 
